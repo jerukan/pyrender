@@ -5,7 +5,7 @@ Author: Matthew Matl
 import sys
 
 import numpy as np
-import PIL
+from PIL import Image
 
 from .constants import (RenderFlags, TextAlign, GLTF, BufFlags, TexFlags,
                         ProgramFlags, DEFAULT_Z_FAR, DEFAULT_Z_NEAR,
@@ -1193,10 +1193,10 @@ class Renderer(object):
 
     def _resize_image(self, value, antialias=False):
         """If needed, rescale the render for MacOS."""
-        img = PIL.Image.fromarray(value)
-        resample = PIL.Image.NEAREST
+        img = Image.fromarray(value)
+        resample = Image.NEAREST
         if antialias:
-            resample = PIL.Image.BILINEAR
+            resample = Image.BILINEAR
         size = (self.viewport_width // self.dpscale,
                 self.viewport_height // self.dpscale)
         img = img.resize(size, resample=resample)
